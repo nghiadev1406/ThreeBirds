@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.nghia.threebirds.LoginActivity">
+
+    <LinearLayout
+        android:layout_width="368dp"
+        android:layout_height="495dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <ImageView
+            android:id="@+id/imgAppLogo"
+            android:layout_width="match_parent"
+            android:layout_height="143dp" />
+
+        <EditText
+            android:id="@+id/loginName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Tài Khoản"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/loginPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Mật Khẩu"
+            android:inputType="textPassword" />
+
+        <TextView
+            android:id="@+id/txtForgot"
+            android:layout_width="match_parent"
+            android:layout_height="27dp"
+            android:padding="5dp"
+            android:text="Bạn quên mật khẩu?"
+            android:textColor="@android:color/holo_red_dark" />
+
+        <CheckBox
+            android:id="@+id/checkRem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nhớ mật khẩu" />
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Đăng Nhập" />
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
