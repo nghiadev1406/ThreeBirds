@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,7 +15,8 @@
         <ImageView
             android:id="@+id/imgAppLogo"
             android:layout_width="match_parent"
-            android:layout_height="143dp" />
+            android:layout_height="143dp"
+            android:src="@drawable/logo" />
 
         <EditText
             android:id="@+id/loginName"
@@ -34,13 +34,29 @@
             android:hint="Mật Khẩu"
             android:inputType="textPassword" />
 
-        <TextView
-            android:id="@+id/txtForgot"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="27dp"
-            android:padding="5dp"
-            android:text="Bạn quên mật khẩu?"
-            android:textColor="@android:color/holo_red_dark" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/txtForgot"
+                android:layout_width="0dp"
+                android:layout_height="27dp"
+                android:layout_weight="1"
+                android:text="Bạn quên mật khẩu?"
+                android:textColor="@android:color/holo_red_dark" />
+
+            <TextView
+                android:id="@+id/txtRegister"
+                android:layout_width="0dp"
+                android:layout_height="27dp"
+                android:layout_weight="1"
+                android:text="Tạo tài khoản mới"
+                android:textColor="@android:color/holo_red_dark" />
+
+        </LinearLayout>
 
         <CheckBox
             android:id="@+id/checkRem"
