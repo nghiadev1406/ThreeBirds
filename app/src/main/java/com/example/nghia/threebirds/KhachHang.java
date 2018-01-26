@@ -5,4 +5,61 @@ package com.example.nghia.threebirds;
  */
 
 public class KhachHang {
+    private String TenKhachHang, LoaiKhachHang, SoDienThoai, Email, DiaChi;
+
+    public KhachHang() {
+        TenKhachHang = "";
+        LoaiKhachHang = "";
+        SoDienThoai = "";
+        Email = "";
+        DiaChi = "";
+    }
+
+    public KhachHang(String tenKhachHang, String loaiKhachHang, String soDienThoai, String email, String diaChi) {
+        TenKhachHang = tenKhachHang;
+        LoaiKhachHang = loaiKhachHang;
+        SoDienThoai = soDienThoai;
+        Email = email;
+        DiaChi = diaChi;
+    }
+
+    public String getTenKhachHang() {
+        return TenKhachHang;
+    }
+
+    public void setTenKhachHang(String tenKhachHang) {
+        TenKhachHang = tenKhachHang;
+    }
+
+    public String getLoaiKhachHang() {
+        return LoaiKhachHang;
+    }
+
+    public void setLoaiKhachHang(String loaiKhachHang) {
+        LoaiKhachHang = loaiKhachHang;
+    }
+
+    public String getSoDienThoai() {
+        return SoDienThoai;
+    }
+
+    public void setSoDienThoai(String soDienThoai) {
+        SoDienThoai = soDienThoai;
+    }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String email) {
+        Email = email;
+    }
+
+    public String getDiaChi() {
+        return DiaChi;
+    }
+
+    public void setDiaChi(String diaChi) {
+        DiaChi = diaChi;
+    }
 }
