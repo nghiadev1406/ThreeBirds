@@ -1,5 +1,6 @@
 package com.example.nghia.threebirds;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -28,7 +29,6 @@ public class LoginActivity extends AppCompatActivity {
         db = openOrCreateDatabase("Account", Context.MODE_PRIVATE, null);
         db.execSQL("CREATE TABLE IF NOT EXISTS Account(username VARCHAR(10) PRIMARY KEY,password VARCHAR(8));");
         mapping();
-
         txtSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,8 +66,12 @@ public class LoginActivity extends AppCompatActivity {
         btnXacNhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (edt_password.getText().toString().equals(edt_confirmPass.getText().toString()))
+                if (edt_password.getText().toString().equals(edt_confirmPass.getText().toString())) {
                     db.execSQL("INSERT INTO Account VALUES('" + edt_username.getText().toString() + "','" + edt_password.getText().toString() + "');");
+                    dialog.dismiss();
+                    Toast.makeText(LoginActivity.this, "Tạo tài khoản thành công", Toast.LENGTH_SHORT).show();
+                } else
+                    Toast.makeText(LoginActivity.this, "Mật khẩu không đúng!", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -85,5 +89,13 @@ public class LoginActivity extends AppCompatActivity {
         edtLog_Pass = (EditText) findViewById(R.id.loginPassword);
         btnLogin = (Button) findViewById(R.id.btnLogin);
         txtSignUp = (TextView) findViewById(R.id.txtRegister);
+    }
+
+    public void showMessage(String title, String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.show();
     }
 }

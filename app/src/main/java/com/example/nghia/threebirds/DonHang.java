@@ -5,7 +5,7 @@ package com.example.nghia.threebirds;
  */
 
 public class DonHang {
-    private String MaHangHoa,TrangThai,SoDienThoai,DiaChi;
+    private String MaHangHoa, TrangThai, SoDienThoai, DiaChi, TenKhachHang;
     private Ngay NgayTao;
 
     public DonHang() {
