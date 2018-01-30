@@ -16,7 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DonHangActivity"></activity>
+        <activity android:name=".DonHangActivity" />
+        <activity android:name=".ThemDonHangActivity" />
+        <activity android:name=".ThemSanPhamActivity" />
+        <activity android:name=".ThemKhachHangActivity" />
+        <activity android:name=".KhachHangActivity" />
+        <activity android:name=".SanPhamActivity"></activity>
     </application>
 
 </manifest>
