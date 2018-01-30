@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -66,12 +67,20 @@ public class LoginActivity extends AppCompatActivity {
         btnXacNhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (edt_password.getText().toString().equals(edt_confirmPass.getText().toString())) {
-                    db.execSQL("INSERT INTO Account VALUES('" + edt_username.getText().toString() + "','" + edt_password.getText().toString() + "');");
-                    dialog.dismiss();
-                    Toast.makeText(LoginActivity.this, "Tạo tài khoản thành công", Toast.LENGTH_SHORT).show();
-                } else
-                    Toast.makeText(LoginActivity.this, "Mật khẩu không đúng!", Toast.LENGTH_SHORT).show();
+                if (edt_username.getText().toString().length() == 0 || edt_password.getText().toString().length() == 0 || edt_confirmPass.getText().toString().length() == 0) {
+                    Toast.makeText(LoginActivity.this, "Xin hãy nhập tất cả các giá trị!", Toast.LENGTH_SHORT).show();
+                } else {
+                    if (edt_password.getText().toString().equals(edt_confirmPass.getText().toString())) {
+                        try {
+                            db.execSQL("INSERT INTO Account VALUES('" + edt_username.getText().toString() + "','" + edt_password.getText().toString() + "');");
+                            dialog.dismiss();
+                            showMessage("Thành công", "Tạo tài khoản thành công");
+                        } catch (SQLException e) {
+                            showMessage("Thất bại", "Tài khoản đã tồn tại");
+                        }
+                    } else
+                        Toast.makeText(LoginActivity.this, "Mật khẩu không đúng!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -96,6 +105,7 @@ public class LoginActivity extends AppCompatActivity {
         builder.setCancelable(true);
         builder.setTitle(title);
         builder.setMessage(message);
+        builder.setPositiveButton("OK", null);
         builder.show();
     }
 }
