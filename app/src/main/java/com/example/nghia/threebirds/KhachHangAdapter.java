@@ -6,27 +6,28 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
 /**
- * Created by nghia on 1/30/2018.
+ * Created by Nghia on 1/31/2018.
  */
 
-public class DonHangAdapter extends BaseAdapter {
-    private DonHangActivity context;
+public class KhachHangAdapter extends BaseAdapter {
+    private KhachHangActivity context;
     private int layout;
-    private List<DonHang> donhangList;
+    private List<KhachHang> customerList;
 
-    public DonHangAdapter(DonHangActivity context, int layout, List<DonHang> donhangList) {
+    public KhachHangAdapter(KhachHangActivity context, int layout, List<KhachHang> customerList) {
         this.context = context;
         this.layout = layout;
-        this.donhangList = donhangList;
+        this.customerList = customerList;
     }
 
     @Override
     public int getCount() {
-        return donhangList.size();
+        return customerList.size();
     }
 
     @Override
@@ -40,7 +41,7 @@ public class DonHangAdapter extends BaseAdapter {
     }
 
     private class ViewHolder {
-        TextView txtTenSP, txtTenKH;
+        TextView txtTenKH, txtDiaChi;
         ImageView img_delete, img_modify;
     }
 
@@ -49,31 +50,31 @@ public class DonHangAdapter extends BaseAdapter {
         ViewHolder viewHolder;
         if (view == null) {
             viewHolder = new ViewHolder();
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(DonHangActivity.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(KhachHangActivity.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(layout, null);
-            viewHolder.txtTenSP = (TextView) view.findViewById(R.id.txtTenSP);
-            viewHolder.txtTenKH = (TextView) view.findViewById(R.id.txtTenKH);
+            viewHolder.txtTenKH = (TextView) view.findViewById(R.id.txt_KH_TenKH);
+            viewHolder.txtDiaChi = (TextView) view.findViewById(R.id.txt_KH_DiaChi);
             viewHolder.img_delete = (ImageView) view.findViewById(R.id.imgDelete);
             viewHolder.img_modify = (ImageView) view.findViewById(R.id.imgModify);
             view.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) view.getTag();
         }
-        final DonHang donhang = donhangList.get(i);
-        viewHolder.txtTenSP.setText(donhang.getTenSanPham());
+        final KhachHang kh = customerList.get(i);
+        viewHolder.txtTenKH.setText(kh.getTen());
+        viewHolder.txtDiaChi.setText(kh.getDiaChi());
 
         viewHolder.img_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Toast.makeText(context, "Đã xóa", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Đã xóa", Toast.LENGTH_SHORT).show();
             }
         });
 
         viewHolder.img_modify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //context.DialogEditInfo(KhachHang.getMssv(), KhachHang.getTen(), KhachHang.getDiem());
-                // Toast.makeText(context, "Đã Sửa", Toast.LENGTH_SHORT).show();
+                context.DialogEditInfo(kh);
             }
         });
 

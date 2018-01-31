@@ -30,6 +30,13 @@ public class ThemSanPhamActivity extends AppCompatActivity {
                 showMessage("Thành công", "Tạo sản phẩm thành công!");
             }
         });
+
+        btn_Back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     public void Mapping() {

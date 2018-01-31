@@ -50,6 +50,13 @@ public class ThemKhachHangActivity extends AppCompatActivity {
                 }
             }
         });
+        
+        btn_Back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     public void Mapping() {

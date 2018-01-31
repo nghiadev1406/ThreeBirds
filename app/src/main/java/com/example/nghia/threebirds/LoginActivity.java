@@ -40,12 +40,9 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, DonHangActivity.class);
-                Bundle bundle = new Bundle();
                 curMaster = db.rawQuery("SELECT * FROM Account WHERE username='" + edtLog_Name.getText() + "' AND password='" + edtLog_Pass.getText() + "';", null);
                 if (curMaster.moveToFirst()) {
-                    bundle.putString("username", edtLog_Name.getText().toString());
-                    intent.putExtra("data", bundle);
+                    Intent intent = new Intent(LoginActivity.this, DonHangActivity.class);
                     startActivity(intent);
                 } else {
                     Toast.makeText(LoginActivity.this, "Tài khoản hoặc mật khẩu bị sai! Vui lòng kiểm tra lại", Toast.LENGTH_SHORT).show();

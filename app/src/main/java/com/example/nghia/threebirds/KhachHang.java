@@ -17,7 +17,7 @@ public class KhachHang implements Serializable {
         DiaChi = diaChi;
     }
 
-    public String getTenKhachHang() {
+    public String getTen() {
         return TenKhachHang;
     }
 
