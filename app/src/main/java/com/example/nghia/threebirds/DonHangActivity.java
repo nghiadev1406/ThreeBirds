@@ -26,10 +26,8 @@ public class DonHangActivity extends AppCompatActivity {
         Mapping();
 
         //Create Database + Tables
-        /*db = new Database(this, "quan_ly_ban_hang.sqlite", null, 1);
-        db.QueryData("CREATE TABLE IF NOT EXISTS DonHang(MaDonHang VARCHAR(10) PRIMARY KEY AUTOINCREMENT,TrangThai VARCHAR(20),SoDienThoai VARCHAR(11), DiaChi NTEXT, TenKhachHang NTEXT, Ngay TEXT);");
-        db.execSQL("CREATE TABLE IF NOT EXISTS SanPham(LoaiSanPham NVARCHAR(30),NhanHieu NVARCHAR(10),NgayTao TEXT);");
-        db.execSQL("CREATE TABLE IF NOT EXISTS KhachHang(TenKhachHang NTEXT, LoaiKhachHang VARCHAR(10), SoDienThoai VARCHAR(11), Email TEXT, DiaChi NTEXT);");*/
+        db = new Database(this, "quan_ly_ban_hang.sqlite", null, 1);
+        db.QueryData("CREATE TABLE IF NOT EXISTS DonHang(maDH INTEGER PRIMARY KEY AUTOINCREMENT, tenSP NVARCHAR(30), status VARCHAR(20), tenKH NTEXT, sdt VARCHAR(11), diachi NTEXT);");
 
         btn_Them.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,6 +42,7 @@ public class DonHangActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(DonHangActivity.this, KhachHangActivity.class);
                 startActivity(intent);
+                db.closeConnection();
                 finish();
             }
         });

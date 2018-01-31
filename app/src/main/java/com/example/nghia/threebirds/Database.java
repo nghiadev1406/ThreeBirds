@@ -10,12 +10,18 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 
 public class Database extends SQLiteOpenHelper {
+    private SQLiteDatabase database;
+
     public Database(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
 
+    public void closeConnection() {
+        database.close();
+    }
+
     public void QueryData(String sql) {
-        SQLiteDatabase database = getWritableDatabase();
+        database = getWritableDatabase();
         database.execSQL(sql);
     }
 

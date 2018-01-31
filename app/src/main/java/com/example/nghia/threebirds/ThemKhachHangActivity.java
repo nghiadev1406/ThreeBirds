@@ -6,9 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import java.io.Serializable;
 
 public class ThemKhachHangActivity extends AppCompatActivity {
     Spinner spinnerLoaiKhach;
@@ -20,13 +24,30 @@ public class ThemKhachHangActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_them_khach_hang);
         Mapping();
+
+        String[] array_loaiKH = new String[]{"Mới", "Member", "VIP"};
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, array_loaiKH);
+        spinnerLoaiKhach.setAdapter(adapter);
+
         btn_Finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.putExtra("goihang", "nghia");
-                setResult(RESULT_OK, intent);
-                showMessage("Thành công", "Tạo khách hàng thành công!");
+                if (edtTenKH.getText().toString().length() == 0 || edtSDT.getText().toString().length() == 0 || edtEmail.getText().toString().length() == 0 || edtDiaChi.getText().toString().length() == 0) {
+                    Toast.makeText(ThemKhachHangActivity.this, "Xin hãy nhập đầy đủ tất cả các trường!", Toast.LENGTH_SHORT).show();
+                } else {
+                    KhachHang kh = new KhachHang(edtTenKH.getText().toString(), spinnerLoaiKhach.getSelectedItem().toString(), edtSDT.getText().toString(), edtEmail.getText().toString(), edtDiaChi.getText().toString());
+                   /* Intent intent = new Intent();
+                    intent.putExtra("goihang", "nghia");
+                    setResult(RESULT_OK, intent);
+                    showMessage("Thành công", "Tạo khách hàng thành công!");*/
+
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("KH", (Serializable) kh);
+                    Intent intent = new Intent();
+                    intent.putExtra("BUNDLE", bundle);
+                    setResult(RESULT_OK, intent);
+                    showMessage("Thành công", "Tạo khách hàng thành công!");
+                }
             }
         });
     }

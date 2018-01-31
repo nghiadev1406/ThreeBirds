@@ -1,10 +1,12 @@
 package com.example.nghia.threebirds;
 
+import java.io.Serializable;
+
 /**
  * Created by nghia on 1/24/2018.
  */
 
-public class KhachHang {
+public class KhachHang implements Serializable {
     private String TenKhachHang, LoaiKhachHang, SoDienThoai, Email, DiaChi;
 
     public KhachHang(String tenKhachHang, String loaiKhachHang, String soDienThoai, String email, String diaChi) {
