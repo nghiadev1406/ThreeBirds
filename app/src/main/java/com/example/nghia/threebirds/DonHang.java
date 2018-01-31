@@ -5,22 +5,62 @@ package com.example.nghia.threebirds;
  */
 
 public class DonHang {
-    private String MaHangHoa, TrangThai, SoDienThoai, DiaChi, TenKhachHang;
-    private Ngay NgayTao;
+    private String MaDonHang, TenSanPham, TrangThai, TenKhachHang, DiaChi, SoDienThoai;
 
-    public DonHang() {
-        MaHangHoa = "";
-        NgayTao = new Ngay();
-        TrangThai = "";
-        SoDienThoai = "";
-        DiaChi = "";
+    public DonHang(String maDonHang, String tenSanPham, String trangThai, String tenKhachHang, String diaChi, String soDienThoai) {
+        MaDonHang = maDonHang;
+        TenSanPham = tenSanPham;
+        TrangThai = trangThai;
+        TenKhachHang = tenKhachHang;
+        DiaChi = diaChi;
+        SoDienThoai = soDienThoai;
     }
 
-    public DonHang(String maHangHoa, Ngay ngayTao, String trangThai, String soDienThoai, String diaChi) {
-        MaHangHoa = maHangHoa;
-        NgayTao = ngayTao;
+    public String getMaDonHang() {
+        return MaDonHang;
+    }
+
+    public void setMaDonHang(String maDonHang) {
+        MaDonHang = maDonHang;
+    }
+
+    public String getTenSanPham() {
+        return TenSanPham;
+    }
+
+    public void setTenSanPham(String tenSanPham) {
+        TenSanPham = tenSanPham;
+    }
+
+    public String getTrangThai() {
+        return TrangThai;
+    }
+
+    public void setTrangThai(String trangThai) {
         TrangThai = trangThai;
-        SoDienThoai = soDienThoai;
+    }
+
+    public String getTenKhachHang() {
+        return TenKhachHang;
+    }
+
+    public void setTenKhachHang(String tenKhachHang) {
+        TenKhachHang = tenKhachHang;
+    }
+
+    public String getDiaChi() {
+        return DiaChi;
+    }
+
+    public void setDiaChi(String diaChi) {
         DiaChi = diaChi;
+    }
+
+    public String getSoDienThoai() {
+        return SoDienThoai;
+    }
+
+    public void setSoDienThoai(String soDienThoai) {
+        SoDienThoai = soDienThoai;
     }
 }

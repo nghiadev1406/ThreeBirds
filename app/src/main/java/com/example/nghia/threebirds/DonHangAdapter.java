@@ -18,10 +18,10 @@ public class DonHangAdapter extends BaseAdapter {
     private int layout;
     private List<DonHang> donhangList;
 
-    public DonHangAdapter(DonHangActivity context, int layout, List<DonHang> studentList) {
+    public DonHangAdapter(DonHangActivity context, int layout, List<DonHang> donhangList) {
         this.context = context;
         this.layout = layout;
-        this.donhangList = studentList;
+        this.donhangList = donhangList;
     }
 
     @Override
@@ -60,7 +60,7 @@ public class DonHangAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) view.getTag();
         }
         final DonHang donhang = donhangList.get(i);
-        viewHolder.txtTenSP.setText(donhang.);
+        viewHolder.txtTenSP.setText(donhang.getTenSanPham());
 
         viewHolder.img_delete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +72,7 @@ public class DonHangAdapter extends BaseAdapter {
         viewHolder.img_modify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                context.DialogEditInfo(sinhvien.getMssv(), sinhvien.getTen(), sinhvien.getDiem());
+                //context.DialogEditInfo(sinhvien.getMssv(), sinhvien.getTen(), sinhvien.getDiem());
                 // Toast.makeText(context, "Đã Sửa", Toast.LENGTH_SHORT).show();
             }
         });

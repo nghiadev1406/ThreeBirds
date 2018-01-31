@@ -65,9 +65,11 @@
             android:weightSum="9">
 
             <RelativeLayout
+                android:id="@+id/layout_btnDonHang"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="3">
+                android:layout_weight="3"
+                android:background="#69af57">
 
                 <ImageButton
                     android:id="@+id/btn_donhang"
@@ -103,6 +105,5 @@
                     android:background="@drawable/khachhang" />
             </RelativeLayout>
         </LinearLayout>
-
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

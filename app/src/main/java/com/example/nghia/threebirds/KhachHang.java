@@ -7,14 +7,6 @@ package com.example.nghia.threebirds;
 public class KhachHang {
     private String TenKhachHang, LoaiKhachHang, SoDienThoai, Email, DiaChi;
 
-    public KhachHang() {
-        TenKhachHang = "";
-        LoaiKhachHang = "";
-        SoDienThoai = "";
-        Email = "";
-        DiaChi = "";
-    }
-
     public KhachHang(String tenKhachHang, String loaiKhachHang, String soDienThoai, String email, String diaChi) {
         TenKhachHang = tenKhachHang;
         LoaiKhachHang = loaiKhachHang;
