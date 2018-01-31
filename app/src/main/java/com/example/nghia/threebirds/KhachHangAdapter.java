@@ -6,7 +6,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -61,13 +60,13 @@ public class KhachHangAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) view.getTag();
         }
         final KhachHang kh = customerList.get(i);
-        viewHolder.txtTenKH.setText(kh.getTen());
+        viewHolder.txtTenKH.setText(kh.getTenKhachHang());
         viewHolder.txtDiaChi.setText(kh.getDiaChi());
 
         viewHolder.img_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "Đã xóa", Toast.LENGTH_SHORT).show();
+                context.DialogDeleteInfo(kh);
             }
         });
 

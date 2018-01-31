@@ -7,9 +7,11 @@ import java.io.Serializable;
  */
 
 public class KhachHang implements Serializable {
+    private int id;
     private String TenKhachHang, LoaiKhachHang, SoDienThoai, Email, DiaChi;
 
-    public KhachHang(String tenKhachHang, String loaiKhachHang, String soDienThoai, String email, String diaChi) {
+    public KhachHang(int id, String tenKhachHang, String loaiKhachHang, String soDienThoai, String email, String diaChi) {
+        this.id = id;
         TenKhachHang = tenKhachHang;
         LoaiKhachHang = loaiKhachHang;
         SoDienThoai = soDienThoai;
@@ -17,7 +19,15 @@ public class KhachHang implements Serializable {
         DiaChi = diaChi;
     }
 
-    public String getTen() {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTenKhachHang() {
         return TenKhachHang;
     }
 

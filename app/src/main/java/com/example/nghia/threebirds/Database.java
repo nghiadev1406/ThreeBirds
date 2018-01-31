@@ -16,10 +16,6 @@ public class Database extends SQLiteOpenHelper {
         super(context, name, factory, version);
     }
 
-    public void closeConnection() {
-        database.close();
-    }
-
     public void QueryData(String sql) {
         database = getWritableDatabase();
         database.execSQL(sql);

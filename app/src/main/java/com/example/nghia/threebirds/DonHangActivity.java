@@ -34,6 +34,7 @@ public class DonHangActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(DonHangActivity.this, ThemDonHangActivity.class);
                 startActivityForResult(intent, REQUEST_CODE);
+                db.close();
             }
         });
 
@@ -42,7 +43,7 @@ public class DonHangActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(DonHangActivity.this, KhachHangActivity.class);
                 startActivity(intent);
-                db.closeConnection();
+                db.close();
                 finish();
             }
         });
@@ -52,6 +53,7 @@ public class DonHangActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(DonHangActivity.this, SanPhamActivity.class);
                 startActivity(intent);
+                db.close();
                 finish();
             }
         });

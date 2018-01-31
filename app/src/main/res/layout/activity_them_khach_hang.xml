@@ -98,7 +98,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="Số điện thoại"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName|number" />
 
                 <EditText
                     android:id="@+id/edtEmail"
@@ -106,7 +106,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="Email"
-                    android:inputType="textPersonName" />
+                    android:inputType="textEmailAddress" />
 
                 <EditText
                     android:id="@+id/edtDiaChi"
