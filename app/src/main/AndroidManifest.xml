@@ -21,7 +21,7 @@
         <activity android:name=".ThemSanPhamActivity" />
         <activity android:name=".ThemKhachHangActivity" />
         <activity android:name=".KhachHangActivity" />
-        <activity android:name=".SanPhamActivity"></activity>
+        <activity android:name=".SanPhamActivity" />
     </application>
 
 </manifest>

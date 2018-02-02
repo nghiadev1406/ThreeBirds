@@ -48,6 +48,7 @@ public class DonHangActivity extends AppCompatActivity {
         btn_Them.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                db.close();
                 Intent intent = new Intent(DonHangActivity.this, ThemDonHangActivity.class);
                 startActivityForResult(intent, REQUEST_CODE);
                 db.close();
