@@ -5,23 +5,18 @@ package com.example.nghia.threebirds;
  */
 
 public class DonHang {
-    private String MaDonHang, TenSanPham, TrangThai, TenKhachHang, DiaChi, SoDienThoai;
+    private String TenSanPham, NhanHieu, TrangThai, TenKhachHang, DiaChi, SoDienThoai;
+    private int MaDonHang, SoLuong;
 
-    public DonHang(String maDonHang, String tenSanPham, String trangThai, String tenKhachHang, String diaChi, String soDienThoai) {
-        MaDonHang = maDonHang;
+    public DonHang(int maDonHang, String tenSanPham, String nhanHieu, int soLuong, String trangThai, String tenKhachHang, String soDienThoai, String diaChi) {
         TenSanPham = tenSanPham;
+        NhanHieu = nhanHieu;
         TrangThai = trangThai;
         TenKhachHang = tenKhachHang;
         DiaChi = diaChi;
         SoDienThoai = soDienThoai;
-    }
-
-    public String getMaDonHang() {
-        return MaDonHang;
-    }
-
-    public void setMaDonHang(String maDonHang) {
         MaDonHang = maDonHang;
+        SoLuong = soLuong;
     }
 
     public String getTenSanPham() {
@@ -30,6 +25,14 @@ public class DonHang {
 
     public void setTenSanPham(String tenSanPham) {
         TenSanPham = tenSanPham;
+    }
+
+    public String getNhanHieu() {
+        return NhanHieu;
+    }
+
+    public void setNhanHieu(String nhanHieu) {
+        NhanHieu = nhanHieu;
     }
 
     public String getTrangThai() {
@@ -62,5 +65,21 @@ public class DonHang {
 
     public void setSoDienThoai(String soDienThoai) {
         SoDienThoai = soDienThoai;
+    }
+
+    public int getMaDonHang() {
+        return MaDonHang;
+    }
+
+    public void setMaDonHang(int maDonHang) {
+        MaDonHang = maDonHang;
+    }
+
+    public int getSoLuong() {
+        return SoLuong;
+    }
+
+    public void setSoLuong(int soLuong) {
+        SoLuong = soLuong;
     }
 }

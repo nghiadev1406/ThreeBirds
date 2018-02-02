@@ -47,10 +47,10 @@ public class ThemSanPhamActivity extends AppCompatActivity {
                         Intent intent = new Intent();
                         intent.putExtra("SIGNAL", "SP_SUCCESS");
                         setResult(RESULT_OK, intent);
-                        showMessage("Thành công", "Tạo sản phẩm thành công!");
+                        showMessage("Thành công", "Thêm sản phẩm thành công!");
                         db.close();
                     } catch (SQLException e) {
-                        showMessage("Thất bại", "Không thể thêm khách hàng!");
+                        showMessage("Thất bại", "Không thể thêm sản phẩm!");
                     }
                 }
 

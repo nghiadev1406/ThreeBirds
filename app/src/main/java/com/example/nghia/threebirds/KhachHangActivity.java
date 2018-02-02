@@ -50,6 +50,7 @@ public class KhachHangActivity extends AppCompatActivity {
                 Intent intent = new Intent(KhachHangActivity.this, DonHangActivity.class);
                 startActivity(intent);
                 finish();
+                overridePendingTransition(0, 0);
             }
         });
 
@@ -60,6 +61,7 @@ public class KhachHangActivity extends AppCompatActivity {
                 Intent intent = new Intent(KhachHangActivity.this, SanPhamActivity.class);
                 startActivity(intent);
                 finish();
+                overridePendingTransition(0, 0);
             }
         });
 

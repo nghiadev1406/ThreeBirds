@@ -42,15 +42,8 @@ public class ThemKhachHangActivity extends AppCompatActivity {
                         Intent intent = new Intent();
                         intent.putExtra("SIGNAL", "KH_SUCCESS");
                         setResult(RESULT_OK, intent);
-                        showMessage("Thành công", "Tạo khách hàng thành công!");
+                        showMessage("Thành công", "Thêm khách hàng thành công!");
                         db.close();
-                    /*KhachHang kh = new KhachHang(0, edtTenKH.getText().toString(), spinnerLoaiKhach.getSelectedItem().toString(), edtSDT.getText().toString(), edtEmail.getText().toString(), edtDiaChi.getText().toString());
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("KH", (Serializable) kh);
-                    Intent intent = new Intent();
-                    intent.putExtra("BUNDLE", bundle);
-                    setResult(RESULT_OK, intent);
-                    showMessage("Thành công", "Tạo khách hàng thành công!");*/
                     } catch (SQLException e) {
                         showMessage("Thất bại", "Không thể thêm khách hàng!");
                     }

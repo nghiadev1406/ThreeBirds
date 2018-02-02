@@ -56,6 +56,7 @@ public class SanPhamActivity extends AppCompatActivity {
                 Intent intent = new Intent(SanPhamActivity.this, DonHangActivity.class);
                 startActivity(intent);
                 finish();
+                overridePendingTransition(0, 0);
             }
         });
 
@@ -65,6 +66,7 @@ public class SanPhamActivity extends AppCompatActivity {
                 Intent intent = new Intent(SanPhamActivity.this, KhachHangActivity.class);
                 startActivity(intent);
                 finish();
+                overridePendingTransition(0, 0);
             }
         });
     }

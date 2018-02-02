@@ -61,19 +61,19 @@ public class DonHangAdapter extends BaseAdapter {
         }
         final DonHang donhang = donhangList.get(i);
         viewHolder.txtTenSP.setText(donhang.getTenSanPham());
+        viewHolder.txtTenKH.setText(donhang.getTenKhachHang());
 
         viewHolder.img_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Toast.makeText(context, "Đã xóa", Toast.LENGTH_SHORT).show();
+                context.DialogDeleteInfo(donhang);
             }
         });
 
         viewHolder.img_modify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //context.DialogEditInfo(KhachHang.getMssv(), KhachHang.getTen(), KhachHang.getDiem());
-                // Toast.makeText(context, "Đã Sửa", Toast.LENGTH_SHORT).show();
+                context.DialogEditInfo(donhang);
             }
         });
 
