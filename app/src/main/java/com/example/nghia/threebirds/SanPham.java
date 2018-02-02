@@ -5,22 +5,25 @@ package com.example.nghia.threebirds;
  */
 
 public class SanPham {
-    private String TenHangHoa, LoaiSanPham, NhanHieu;
+    private int id;
+    private String LoaiSanPham, NhanHieu;
     private double GiaTien;
+    private int TonKho;
 
-    public SanPham(String tenHangHoa, String loaiSanPham, String nhanHieu, double giaTien) {
-        TenHangHoa = tenHangHoa;
+    public SanPham(int id, String loaiSanPham, String nhanHieu, double giaTien, int tonKho) {
+        this.id = id;
         LoaiSanPham = loaiSanPham;
         NhanHieu = nhanHieu;
         GiaTien = giaTien;
+        TonKho = tonKho;
     }
 
-    public String getTenHangHoa() {
-        return TenHangHoa;
+    public int getId() {
+        return id;
     }
 
-    public void setTenHangHoa(String tenHangHoa) {
-        TenHangHoa = tenHangHoa;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getLoaiSanPham() {
@@ -45,5 +48,13 @@ public class SanPham {
 
     public void setGiaTien(double giaTien) {
         GiaTien = giaTien;
+    }
+
+    public int getTonKho() {
+        return TonKho;
+    }
+
+    public void setTonKho(int tonKho) {
+        TonKho = tonKho;
     }
 }
