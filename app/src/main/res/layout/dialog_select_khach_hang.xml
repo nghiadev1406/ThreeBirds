@@ -4,6 +4,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Danh sách khách hàng"
+        android:textColor="#279432"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
     <ListView
         android:id="@+id/dialog_lv_chon_KH"
         android:layout_width="match_parent"

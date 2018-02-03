@@ -1,5 +1,6 @@
 package com.example.nghia.threebirds;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +14,17 @@ import java.util.List;
  */
 
 public class Select_SP_Adapter extends BaseAdapter {
-    private ThemDonHangActivity context;
+    private Context context;
     private int layout;
     private List<SanPham> productList;
 
     public Select_SP_Adapter(ThemDonHangActivity context, int layout, List<SanPham> productList) {
+        this.context = context;
+        this.layout = layout;
+        this.productList = productList;
+    }
+
+    public Select_SP_Adapter(DonHangActivity context, int layout, List<SanPham> productList) {
         this.context = context;
         this.layout = layout;
         this.productList = productList;

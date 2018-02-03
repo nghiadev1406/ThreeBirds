@@ -3,7 +3,6 @@ package com.example.nghia.threebirds;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.SQLException;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -32,7 +31,7 @@ public class ThemSanPhamActivity extends AppCompatActivity {
         final ArrayAdapter<String> adapter_loaiSP = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, array_loaiSP);
         spinnerLoaiSP.setAdapter(adapter_loaiSP);
 
-        String[] array_NhanHieu = new String[]{"SamSung", "Iphone"};
+        String[] array_NhanHieu = new String[]{"SamSung", "Iphone","Asus","Xiaomi"};
         final ArrayAdapter<String> adapter_nhanHieu = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, array_NhanHieu);
         spinnerNhanHieu.setAdapter(adapter_nhanHieu);
 
@@ -43,14 +42,16 @@ public class ThemSanPhamActivity extends AppCompatActivity {
                     Toast.makeText(ThemSanPhamActivity.this, "Xin hãy nhập đầy đủ tất cả các trường!", Toast.LENGTH_SHORT).show();
                 } else {
                     try {
-                        db.QueryData("INSERT INTO SanPham VALUES(NULL,'" + spinnerLoaiSP.getSelectedItem().toString() + "','" + spinnerNhanHieu.getSelectedItem().toString() + "','" + edtGiaTien.getText().toString() + "','" + edtTonKho.getText().toString() + "')");
+                        int tonkho = Integer.parseInt(edtTonKho.getText().toString());
+                        double giatien = Double.parseDouble(edtGiaTien.getText().toString());
+                        db.QueryData("INSERT INTO SanPham VALUES(NULL,'" + spinnerLoaiSP.getSelectedItem().toString() + "','" + spinnerNhanHieu.getSelectedItem().toString() + "','" + giatien + "','" + tonkho + "')");
                         Intent intent = new Intent();
                         intent.putExtra("SIGNAL", "SP_SUCCESS");
                         setResult(RESULT_OK, intent);
                         showMessage("Thành công", "Thêm sản phẩm thành công!");
                         db.close();
-                    } catch (SQLException e) {
-                        showMessage("Thất bại", "Không thể thêm sản phẩm!");
+                    } catch (Exception e) {
+                        showSimpleMessage("Lỗi", "Giá trị quá lớn!");
                     }
                 }
 
@@ -85,6 +86,15 @@ public class ThemSanPhamActivity extends AppCompatActivity {
                 finish();
             }
         });
+        builder.show();
+    }
+
+    public void showSimpleMessage(String title, String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.setPositiveButton("OK", null);
         builder.show();
     }
 }

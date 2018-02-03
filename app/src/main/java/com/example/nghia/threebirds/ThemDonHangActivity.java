@@ -49,14 +49,15 @@ public class ThemDonHangActivity extends AppCompatActivity {
                         showSimpleMessage("Không hợp lệ", "Số lượng đặt vượt quá số lượng trong kho!");
                     } else {
                         try {
-                            db.QueryData("INSERT INTO DonHang VALUES(NULL,'" + edt_SanPham.getText().toString() + "','" + edt_NhanHieu.getText().toString() + "','" + edt_soluong.getText().toString() + "','" + spin_TrangThai.getSelectedItem().toString() + "','" + edt_TenKH.getText().toString() + "','" + edt_SDT.getText().toString() + "', '" + edt_DiaChi.getText().toString() + "')");
+                            int soluong = Integer.parseInt(edt_soluong.getText().toString());
+                            db.QueryData("INSERT INTO DonHang VALUES(NULL,'" + edt_SanPham.getText().toString() + "','" + edt_NhanHieu.getText().toString() + "','" + soluong + "','" + spin_TrangThai.getSelectedItem().toString() + "','" + edt_TenKH.getText().toString() + "','" + edt_SDT.getText().toString() + "', '" + edt_DiaChi.getText().toString() + "')");
                             Intent intent = new Intent();
                             intent.putExtra("SIGNAL", "DH_SUCCESS");
                             setResult(RESULT_OK, intent);
                             showMessage("Thành công", "Thêm đơn hàng thành công!");
                             db.close();
                         } catch (SQLException e) {
-                            showMessage("Thất bại", "Không thể thêm đơn hàng!");
+                            showMessage("Lỗi", "Dữ liệu quá lớn!");
                         }
                     }
                 }

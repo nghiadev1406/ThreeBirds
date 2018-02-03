@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,10 +25,12 @@ public class DonHangActivity extends AppCompatActivity {
     ImageButton btn_Them, btn_DonHang, btn_KhachHang, btn_SanPham;
     int REQUEST_CODE = 123;
     Database db;
-
     ArrayList<DonHang> array_DH;
     ListView lv;
     DonHangAdapter adapter;
+
+    EditText edtSP, edtNhanHieu, edtKH, edtSDT, edtDiaChi;
+    int count_tonkho;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +102,7 @@ public class DonHangActivity extends AppCompatActivity {
                     Toast.makeText(DonHangActivity.this, "Đã xóa!", Toast.LENGTH_SHORT).show();
                     getDataDonHang();
                 } catch (SQLException e) {
-                    showMessage("Lỗi", "Xóa không thành công!");
+                    showSimpleMessage("Lỗi", "Xóa không thành công!");
                 }
             }
         });
@@ -116,13 +119,15 @@ public class DonHangActivity extends AppCompatActivity {
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_update_don_hang);
-        final EditText edtSP = (EditText) dialog.findViewById(R.id.dialog_DH_edtSanPham);
-        final EditText edtNhanHieu = (EditText) dialog.findViewById(R.id.dialog_DH_edtNhanHieu);
+        edtSP = (EditText) dialog.findViewById(R.id.dialog_DH_edtSanPham);
+        edtNhanHieu = (EditText) dialog.findViewById(R.id.dialog_DH_edtNhanHieu);
         final EditText edtSoLuong = (EditText) dialog.findViewById(R.id.dialog_DH_edtSoLuong);
         final Spinner spinStatus = (Spinner) dialog.findViewById(R.id.dialog_DH_spinnerTrangThai);
-        final EditText edtKH = (EditText) dialog.findViewById(R.id.dialog_DH_edtTenKH);
-        final EditText edtSDT = (EditText) dialog.findViewById(R.id.dialog_DH_edtSDT);
-        final EditText edtDiaChi = (EditText) dialog.findViewById(R.id.dialog_DH_edtDiaChi);
+        edtKH = (EditText) dialog.findViewById(R.id.dialog_DH_edtTenKH);
+        edtSDT = (EditText) dialog.findViewById(R.id.dialog_DH_edtSDT);
+        edtDiaChi = (EditText) dialog.findViewById(R.id.dialog_DH_edtDiaChi);
+        ImageButton btnChonSP = (ImageButton) dialog.findViewById(R.id.dialog_DH_btnChonSanPham);
+        ImageButton btnChonKH = (ImageButton) dialog.findViewById(R.id.dialog_DH_btnChonKH);
         Button btnXacNhan = (Button) dialog.findViewById(R.id.dialog_DH_btnOK);
         Button btnHuy = (Button) dialog.findViewById(R.id.dialog_DH_btnCancel);
 
@@ -143,25 +148,50 @@ public class DonHangActivity extends AppCompatActivity {
         edtSDT.setText(String.valueOf(dh.getSoDienThoai()));
         edtDiaChi.setText(String.valueOf(dh.getDiaChi()));
 
+        btnChonSP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogSelectSP();
+            }
+        });
+        btnChonKH.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogSelectKH();
+            }
+        });
+
         btnXacNhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!edtSP.getText().toString().isEmpty() || !edtSoLuong.getText().toString().isEmpty() || !spinStatus.getSelectedItem().toString().isEmpty() || !edtKH.getText().toString().isEmpty() || !edtSDT.getText().toString().isEmpty() || !edtDiaChi.getText().toString().isEmpty()) {
-                    int id = dh.getMaDonHang();
-                    String sanpham_moi = edtSP.getText().toString();
-                    String nhanHieu_moi = edtNhanHieu.getText().toString();
-                    int soluong_moi = Integer.parseInt(edtSoLuong.getText().toString());
-                    String trangthai_moi = spinStatus.getSelectedItem().toString();
-                    String khachhang_moi = edtKH.getText().toString();
-                    String sdt_moi = edtSDT.getText().toString();
-                    String diachi_moi = edtDiaChi.getText().toString();
+                try {
+                    if (!edtSP.getText().toString().isEmpty() || !edtSoLuong.getText().toString().isEmpty() || !spinStatus.getSelectedItem().toString().isEmpty() || !edtKH.getText().toString().isEmpty() || !edtSDT.getText().toString().isEmpty() || !edtDiaChi.getText().toString().isEmpty()) {
+                        if (Integer.parseInt(edtSoLuong.getText().toString()) > count_tonkho) {
+                            showSimpleMessage("Không hợp lệ", "Số lượng đặt vượt quá số lượng trong kho!");
+                        } else {
+                            int id = dh.getMaDonHang();
+                            String sanpham_moi = edtSP.getText().toString();
+                            String nhanHieu_moi = edtNhanHieu.getText().toString();
+                            int soluong_moi = Integer.parseInt(edtSoLuong.getText().toString());
+                            String trangthai_moi = spinStatus.getSelectedItem().toString();
+                            String khachhang_moi = edtKH.getText().toString();
+                            String sdt_moi = edtSDT.getText().toString();
+                            String diachi_moi = edtDiaChi.getText().toString();
 
-                    db.QueryData("UPDATE DonHang SET tenSP = '" + sanpham_moi + "',NhanHieu = '" + nhanHieu_moi + "', soluong = '" + soluong_moi + "', status = '" + trangthai_moi + "' , tenKH = '" + khachhang_moi + "', sdt = '" + sdt_moi + "', diachi = '" + diachi_moi + "' WHERE maDH = '" + id + "'");
-                    Toast.makeText(DonHangActivity.this, "Chỉnh sửa thành công!", Toast.LENGTH_SHORT).show();
-                    getDataDonHang();
-                    dialog.dismiss();
-                } else {
-                    Toast.makeText(DonHangActivity.this, "Thông tin chưa được điền đầy đủ!", Toast.LENGTH_SHORT).show();
+                            if (soluong_moi > count_tonkho) {
+                                showSimpleMessage("Không hợp lệ", "Số lượng đặt vượt quá số lượng trong kho!");
+                            } else {
+                                db.QueryData("UPDATE DonHang SET tenSP = '" + sanpham_moi + "',NhanHieu = '" + nhanHieu_moi + "', soluong = '" + soluong_moi + "', status = '" + trangthai_moi + "' , tenKH = '" + khachhang_moi + "', sdt = '" + sdt_moi + "', diachi = '" + diachi_moi + "' WHERE maDH = '" + id + "'");
+                                Toast.makeText(DonHangActivity.this, "Chỉnh sửa thành công!", Toast.LENGTH_SHORT).show();
+                                getDataDonHang();
+                                dialog.dismiss();
+                            }
+                        }
+                    } else {
+                        Toast.makeText(DonHangActivity.this, "Thông tin chưa được điền đầy đủ!", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                    showSimpleMessage("Lỗi", "Giá trị quá lớn!");
                 }
             }
         });
@@ -175,6 +205,71 @@ public class DonHangActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    public void DialogSelectKH() {
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_select_khach_hang);
+        final ArrayList<KhachHang> array_KH = new ArrayList<>();
+        Cursor dataCur = db.GetData("SELECT * FROM KhachHang");
+        while (dataCur.moveToNext()) {
+            int idKH = dataCur.getInt(0);
+            String tenKH = dataCur.getString(1);
+            String loaiKH = dataCur.getString(2);
+            String sdt = dataCur.getString(3);
+            String email = dataCur.getString(4);
+            String diachi = dataCur.getString(5);
+            array_KH.add(new KhachHang(idKH, tenKH, loaiKH, sdt, email, diachi));
+        }
+        Select_KH_Adapter adapter = new Select_KH_Adapter(this, R.layout.select_danh_sach_khach_hang, array_KH);
+        ListView lv = (ListView) dialog.findViewById(R.id.dialog_lv_chon_KH);
+        lv.setAdapter(adapter);
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                KhachHang kh = array_KH.get(position);
+                edtKH.setText(kh.getTenKhachHang());
+                edtDiaChi.setText(kh.getDiaChi());
+                edtSDT.setText(kh.getSoDienThoai());
+                dialog.dismiss();
+            }
+        });
+        dataCur.close();
+        dialog.show();
+    }
+
+    public void DialogSelectSP() {
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_select_san_pham);
+        final ArrayList<SanPham> array_SP = new ArrayList<>();
+        Cursor dataCur = db.GetData("SELECT * FROM SanPham");
+        while (dataCur.moveToNext()) {
+            int idSP = dataCur.getInt(0);
+            String loaiSP = dataCur.getString(1);
+            String nhanHieu = dataCur.getString(2);
+            double giatien = dataCur.getDouble(3);
+            int tonkho = dataCur.getInt(4);
+            array_SP.add(new SanPham(idSP, loaiSP, nhanHieu, giatien, tonkho));
+        }
+        Select_SP_Adapter adapter = new Select_SP_Adapter(this, R.layout.select_danh_sach_san_pham, array_SP);
+        ListView lv = (ListView) dialog.findViewById(R.id.dialog_lv_chon_SP);
+        lv.setAdapter(adapter);
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                SanPham sp = array_SP.get(position);
+                edtSP.setText(sp.getLoaiSanPham());
+                edtNhanHieu.setText(sp.getNhanHieu());
+                count_tonkho = sp.getTonKho();
+                dialog.dismiss();
+            }
+        });
+        dataCur.close();
+        dialog.show();
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK && data != null) {
@@ -185,12 +280,26 @@ public class DonHangActivity extends AppCompatActivity {
         }
     }
 
-    public void showMessage(String title, String message) {
+    public void showSimpleMessage(String title, String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
         builder.setTitle(title);
         builder.setMessage(message);
         builder.setPositiveButton("OK", null);
+        builder.show();
+    }
+
+    public void showMessage(String title, String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
         builder.show();
     }
 

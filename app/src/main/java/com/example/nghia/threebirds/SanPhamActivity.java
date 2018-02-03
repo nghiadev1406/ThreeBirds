@@ -126,7 +126,7 @@ public class SanPhamActivity extends AppCompatActivity {
             }
         }
 
-        String[] array_NhanHieu = new String[]{"SamSung", "Iphone"};
+        String[] array_NhanHieu = new String[]{"SamSung", "Iphone", "Asus", "Xiaomi"};
         final ArrayAdapter<String> adapter_nhanHieu = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, array_NhanHieu);
         spinNhanHieu.setAdapter(adapter_nhanHieu);
         for (int i = 0; i < array_NhanHieu.length; i++) {
